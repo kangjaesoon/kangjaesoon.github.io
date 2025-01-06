@@ -38,6 +38,43 @@
 
             const yearLevel = yearsOfExperience + 1;
             document.getElementById('experience').textContent = `${yearLevel}년차 개발자 강재순`;
+
+			//프로젝트 더보기버튼
+			const items = document.querySelectorAll(".project-more");
+			const button = document.getElementById("project-toggle-btn");
+			let isExpanded = false; // 더보기 상태 확인
+
+			// 최초 3개만 보이게 설정
+			function showInitialItems() {
+				items.forEach((item, index) => {
+					if (index < 2) {
+						item.style.setProperty("display", "-webkit-box", "important"); // 처음 3개는 보임
+					} else {
+						item.style.setProperty("display", "none", "important"); // 나머지는 숨김
+					}
+				});
+			}
+
+			// 버튼 클릭 이벤트
+			button.addEventListener("click", function (event) {
+				event.preventDefault(); // a 태그 기본 동작 방지
+
+				if (isExpanded) {
+					// 접기 상태
+					showInitialItems();
+					button.textContent = "프로젝트 더보기";
+				} else {
+					// 더보기 상태
+					items.forEach(item => {
+						item.style.setProperty("display", "-webkit-box", "important"); // 모두 보임
+					});
+					button.textContent = "접기";
+				}
+				isExpanded = !isExpanded; // 상태 변경
+			});
+
+			// 초기 상태 설정
+			showInitialItems();
         });
     </script>
 </head>
@@ -366,7 +403,7 @@
 								</div>
 								<div class="col-md-6 animate-box">
 									<div class="progress-wrap ftco-animate">
-										<h3>iBatis/MyBatis</h3>
+										<h3>IBatis/MyBatis</h3>
 										<div class="progress">
 											<div class="progress-bar color-3" role="progressbar" aria-valuenow="90"
 												aria-valuemin="0" aria-valuemax="100" style="width:90%">
@@ -549,33 +586,61 @@
 					</div>
 					<div id="page-4" class="page four">
 						<h2 id="projects-section" class="heading">Projects</h2>
-						<div class="resume-wrap d-flex ftco-animate">
+						<div class="resume-wrap d-flex ftco-animate project-more">
 							<div class="icon d-flex align-items-center justify-content-center">
 								<span class="flaticon-ideas"></span>
 							</div>
 							<div class="text pl-3">
-								<span class="date">2019.09-2020.08</span>
+								<span class="date">2024.04-2024.10</span>
 								<div class="d-flex">
-									<h2>웰리스 여행 상품 예약 플랫폼 개발</h2>
-									<div>&nbsp;<a class="btn btn-outline-secondary" target="_blank"
-											class="btn btn-outline-secondary"
-											href="https://github.com/congchu/-template-2">Github</a>&nbsp;<a
-											class="btn btn-outline-secondary" target="_blank"
-											href="/images/project_1_screenshot.png">스크린샷</a>&nbsp;<a
-											class="btn btn-outline-secondary" target="_blank"
-											href="https://www.wellytravel.com/">Link</a>
+									<h2>NICE기업데이터 API 및 웹페이지 개발</h2>
+									<div>&nbsp;
+										<a class="btn btn-outline-secondary" target="_blank" href="/images/project_1_screenshot.png">스크린샷</a>
+										&nbsp;<a class="btn btn-outline-secondary" target="_blank" href="https://www.wellytravel.com/">Link</a>
 									</div>
 								</div>
-								<span class="position">주식회사 더라피스</span>
-								<div> <b class="text-dark">기술 스택 : </b>React, Typescript, Next.js, Styled-Component,
-									MobX
+								<span class="position">주식회사 오즈씨엔에스</span>
+								<div> 
+									<b class="text-dark">기술 스택 : </b> Java, Spring Framework(Egov), Mysql, Jsp, Jquery, Linux
 								</div>
-								<div> <b class="text-dark">주요 기능 : </b> 회원 관리 및 SNS 로그인, 상품 리스트 확인, 상품 상세 정보
-									확인, 예약 관리, 결제 </div>
-								<p> React </p>
+								<div> 
+									<b class="text-dark">주요 기능 : </b> 
+									<div>
+										<b>1. 기업 데이터 검증 및 제공 API 개발</b>
+										<div class="description">- 실시간 API 호출을 통해 전체 혹은 부분기업 데이터를 제공.</div>
+									</div>
+									<div>
+										<b>2. 대량 데이터 처리 최적화</b>
+										<div class="description">- 100만건이 넘는 .txt 초기파일데이터 LOAD DATA INFILE을 활용하여 데이터베이스 로드.</div>
+										<div class="description">- 대규모 데이터 업데이트 작업에서 Index 설정으로 및 쿼리튜닝으로 1시간에서 1분으로 단축.</div>
+									</div>
+									<div>
+										<b>3. 히스토리 테이블 및 변경내역 관리</b>
+										<div class="description">- MySQL 트리거를 사용하여 데이터 변경(INSERT, UPDATE, DELETE) 시 자동으로 히스토리 테이블에 기록.</div>
+										<div class="description">- 변경 내역 추적 및 데이터 감사 기능을 구현하여 데이터 무결성과 관리 효율성 강화.</div>
+									</div>
+									<div>
+										<b>4. 데이터 최신화</b>
+										<div class="description">- 매일 일정 시간(오전 7시)에 NICE기업정보 측 데이터를 가져와 데이터베이스를 최신 상태로 유지하는 스케줄링 작업 구현.</div>
+										<div class="description">- Spring Framework의 @Scheduled 어노테이션과 Cron 표현식을 사용.</div>
+									</div>
+									<div>
+										<b>4. 웹페이지 개발</b>
+										<div class="description">- 전자정부프레임워크를 기반으로 사용자 친화적인 웹페이지 구현.</div>
+										<div class="description">- 기업 데이터 검색 및 관리 인터페이스 제공.</div>
+									</div>
+								</div>
+								<div> 
+									<b class="text-dark">성과 : </b>
+									<div>
+										<b>1. LOAD DATA INFILE을 활용하여 대량 데이터 처리 속도 개선.</b><br>
+										<b>2. Index 설정 및 Update 쿼리 수정으로 매일 수만 건의 데이터 업데이트 시간을 기존 1시간 → 1분으로 단축.</b><br>
+										<b>3. MySQL 트리거를 활용해 데이터 변경 내역 자동 기록 및 관리 효율성 강화.</b>
+									</div>
+								</div>
 							</div>
 						</div>
-						<div class="resume-wrap d-flex ftco-animate">
+						<div class="resume-wrap d-flex ftco-animate project-more">
 							<div class="icon d-flex align-items-center justify-content-center">
 								<span class="flaticon-ideas"></span>
 							</div>
@@ -589,7 +654,7 @@
 									into your mouth.</p>
 							</div>
 						</div>
-						<div class="resume-wrap d-flex ftco-animate">
+						<div class="resume-wrap d-flex ftco-animate project-more">
 							<div class="icon d-flex align-items-center justify-content-center">
 								<span class="flaticon-ideas"></span>
 							</div>
@@ -603,7 +668,7 @@
 									into your mouth.</p>
 							</div>
 						</div>
-						<div class="resume-wrap d-flex ftco-animate">
+						<div class="resume-wrap d-flex ftco-animate project-more">
 							<div class="icon d-flex align-items-center justify-content-center">
 								<span class="flaticon-ideas"></span>
 							</div>
@@ -616,6 +681,9 @@
 									fly
 									into your mouth.</p>
 							</div>
+						</div>
+						<div class="button-container" style="text-align: center;"> 
+							<a href="#" id="project-toggle-btn" class="btn btn-primary py-3 px-3">프로젝트 더보기</a>
 						</div>
 					</div>
 				</div>
