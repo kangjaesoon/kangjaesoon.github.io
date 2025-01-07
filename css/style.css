@@ -9676,3 +9676,7 @@ textarea.form-control {
 .description{
   padding-left: 20px;
 }
+
+.project-more {
+  display: none !important;
+}
